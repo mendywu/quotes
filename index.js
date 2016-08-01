@@ -17,17 +17,12 @@ function searchByTopic (topic) {
             quotesList.quotes[i] = {"quote" : quote.substring(quote.indexOf("view quote") + 12, quote.indexOf('</span>') - 6),
                           "author" : quote.substring(quote.indexOf("view author") + 13, quote.indexOf("</div>") - 4)};
             i++;
-            if (i > 25)
-              done = 1;
           }
         });
     } else {
       console.log('Invalid topic');
     }
   });
-  while (done < 0)
-    s++;
-  return quotesList;
 }
 
 //searches quotes by tag
@@ -35,5 +30,5 @@ function searchByTag (tag){
 
 }
 //var quotes =
-console.log(searchByTopic("death"));
+searchByTopic("death");
 //console.log(quotes);
