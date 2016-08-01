@@ -5,9 +5,9 @@ var request = require('request');
 
 //searches quotes by topic
 function searchByTopic (topic) {
+  var quotesList = {"quotes" : []};
    request(`http://www.brainyquote.com/quotes/topics/topic_${topic}.html`, function (error, response, body) {
      if (!error){
-       var quotesList = {"quotes" : []};
         var quotesHTML = body.substring
           (body.indexOf('<div id="quotesList'), body.indexOf('<div class="bq_masonry_sidenav">'));
         var quotesSplit = quotesHTML.split('<div class="masonryitem boxy bqQt bqShare">');
@@ -17,19 +17,23 @@ function searchByTopic (topic) {
             quotesList.quotes[i] = {"quote" : quote.substring(quote.indexOf("view quote") + 12, quote.indexOf('</span>') - 6),
                           "author" : quote.substring(quote.indexOf("view author") + 13, quote.indexOf("</div>") - 4)};
             i++;
+            if (i > 25)
+              done = 1;
           }
         });
-        console.log(quotesList);
     } else {
-      console.log('invalid topic');
+      console.log('Invalid topic');
     }
   });
+  while (done < 0)
+    s++;
+  return quotesList;
 }
 
 //searches quotes by tag
 function searchByTag (tag){
-  
+
 }
 //var quotes =
-searchByTopic("death");
+console.log(searchByTopic("death"));
 //console.log(quotes);
