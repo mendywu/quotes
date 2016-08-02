@@ -19,6 +19,9 @@ function searchByTopic (topic) {
             i++;
           }
         });
+        var jsontext = JSON.stringify(quotesList);
+        console.log(quotesList);
+        document.write(jsontext);
     } else {
       console.log('Invalid topic');
     }
@@ -30,5 +33,5 @@ function searchByTag (tag){
 
 }
 //var quotes =
-searchByTopic("death");
+//searchByTopic("sadness");
 //console.log(quotes);
